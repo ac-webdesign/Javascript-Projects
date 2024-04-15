@@ -1,0 +1,213 @@
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.option1{
+    color: white;
+    position: absolute;
+    top: 341px;
+    left: 45px;
+    color: #DBAA3F;
+    font-weight: 600;
+    z-index: 2;
+
+}
+.option2{
+    color: white;
+    position: absolute;
+    top: 425px;
+    left: 45px;
+    color: #DBAA3F;
+    font-family: 'Poppins';
+    font-weight: 600;
+    z-index: 2;
+
+}
+.option3{
+    color: white;
+    position: absolute;
+    top: 341px;
+    left: 400px;
+    color: #DBAA3F;
+    font-family: 'Poppins';
+    font-weight: 600;
+    z-index: 2;
+
+}
+.option4{
+    color: white;
+    position: absolute;
+    top: 425px;
+    left: 400px;
+    color: #DBAA3F;
+    font-family: 'Poppins';
+    font-weight: 600;
+    z-index: 2;
+
+}
+.container {
+    width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    /* background-color:#010236 ; */
+    position: relative;
+    background-image: url(images/darkblue.jpg);
+    
+}
+img{
+    width: 70px;
+    position: absolute;
+    left:40px;
+    top: 40px;
+    z-index: 1;
+    }
+h1 {
+    
+    position: relative;
+    height: 80px;
+    padding: 5px 15px;
+    left: -10px;
+    top: -12px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 40px;
+    background-color:#15141965 ;
+    color:#d6d0d0;
+    font-size: 2rem;
+    font-weight: 400;
+    width: 660px;
+    border-radius: 16px;
+}
+
+#question {
+    position: relative;
+    background-color: #10130F;
+    color: #EAEAEC;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 10px 20px;
+    z-index: 2;
+    /* line-height: 80px; */
+    border: 2px solid #2284C0;
+    border-radius: 8px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.option {
+    padding-left: 60px;
+    padding-right: 20px;
+    border-top: 2px solid #2284C0;
+    border-bottom: 2px solid #2284C0;
+    border-radius: 8px ;
+    cursor: pointer;
+    color: #ffffffc2;
+    background-color: #151419;
+    font-size: 0.9rem;
+    font-weight: 300;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    
+}
+
+#nextButton {
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    background-color: #DBAA3F;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgb(69, 70, 5);
+}
+#startButton{
+    display: none;
+    margin: 20px auto;
+    width: 300px;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #DBAA3F;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgb(69, 70, 5);
+}
+
+#result {
+    font-weight: bold;
+    width: 720px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(177, 220, 240);
+    position: absolute;
+    background-color: rgba(12, 60, 124,0.8);
+    top: 20px;
+    left: 10px;
+    z-index: 15;
+    border-radius: 8px;
+    font-size: 2rem;
+    backdrop-filter: blur(8px);
+    display: none;
+}
+.correctAnswer{
+    background-color: rgb(42, 219, 42);
+    animation: blinkAnimation 0.7s infinite;
+}
+.wrongAnswer{
+    background-color: red;
+}
+
+@keyframes blinkAnimation {
+    0% { background-color: #151419; }
+    50% { background-color: green; }
+    100% { background-color: #151419; }
+}
+.option-letter {
+    color: blue; /* Change color of option letters */
+    margin-right: 5px; /* Add some spacing between the letter and the option text */
+}
+.board{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-right: 20px;
+}
+.prize{
+    width: 200px;
+    height: 30px;
+    background-color:transparent;
+    color: #DBAA3F;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+}
+.activePrize{
+    background-color: #DBAA3F;
+    color: white;
+}

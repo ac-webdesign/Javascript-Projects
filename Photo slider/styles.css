@@ -1,0 +1,83 @@
+body{
+    background: rgba(0, 0, 0,1);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.title{
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        margin-bottom: 100px;
+        font-weight: 200;
+        
+
+}
+.slider{
+    position: relative;
+    width: 60%;
+    margin: auto;
+    overflow: visible;
+    border-radius: 32px;
+    
+}
+.slide{
+    background-size: contain;
+    height: 400px;
+}
+.slider img{
+    width: 100%;
+    display: none;
+    border-radius: 32px;
+}
+
+img.displaySlide{
+    display: block;
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+.slider button{
+    height: 20%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 20%;
+}
+.slider button:hover{
+    height: 20%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background-color: rgba(105, 105, 105, 0.2);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 20%;
+}
+.slider button:active{
+    background-color: rgba(105, 105, 105, 0.8);
+}
+.prev{
+    left: -40px;
+    overflow: visible;
+    z-index: 100;
+}
+
+.next{
+    right: -40px;
+}
+
+@keyframes fade {
+
+    from {opacity: .6}
+    to {opacity: 1;}
+    
+}

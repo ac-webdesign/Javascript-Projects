@@ -1,0 +1,80 @@
+[
+    {
+        "question": "What does HTML stand for?",
+        "options": ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language", "How to Make Language"],
+        "answer": "Hyper Text Markup Language"
+    },
+    {
+        "question": "Which JavaScript keyword is used to declare a variable?",
+        "options": ["variable", "let", "const", "var"],
+        "answer": "var"
+    },
+    {
+        "question": "Which symbol is used to denote an ID in CSS?",
+        "options": [".", "#", "@", "$"],
+        "answer": "#"
+    },
+    
+    {
+        "question": "What does CSS stand for?",
+        "options": ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+        "answer": "Cascading Style Sheets"
+    },
+    {
+        "question": "Which HTML tag is used to define an unordered list?",
+        "options": ["<ul>", "<ol>", "<li>", "<list>"],
+        "answer": "<ul>"
+    },
+    {
+        "question": "How do you add comments in JavaScript?",
+        "options": ["<!-- This is a comment -->", "// This is a comment", "/* This is a comment */", "** This is a comment **"],
+        "answer": "// This is a comment"
+    },
+    {
+        "question": "What does the '===' operator do in JavaScript?",
+        "options": ["Assigns a value", "Compares both value and type", "Compares only value", "Checks for inequality"],
+        "answer": "Compares both value and type"
+    },
+    {
+        "question": "Which CSS property is used to change the text color of an element?",
+        "options": ["font-color", "color", "text-color", "font-style"],
+        "answer": "color"
+    },
+    {
+        "question": "What is the purpose of 'event.preventDefault()' in JavaScript?",
+        "options": ["Stops the event from bubbling up the DOM tree", "Prevents the default action of an event from happening", "Stops the event from capturing", "Prevents the event from firing"],
+        "answer": "Prevents the default action of an event from happening"
+    },
+    {
+        "question": "What is the correct way to select an element with the id 'example' using jQuery?",
+        "options": ["$('example')", "$('.example')", "$('#example')", "'$('example')"],
+        "answer": "$('#example')"
+    },
+    {
+        "question": "Which of the following is NOT a valid CSS selector?",
+        "options": ["div p", ".class1.class2", "#id.class", "div > p"],
+        "answer": "#id.class"
+    },
+    {
+        "question": "What does the 'this' keyword refer to in JavaScript?",
+        "options": ["The current function's context", "The parent function's context", "The global scope", "The object that owns the function"],
+        "answer": "The object that owns the function"
+    },
+    {
+        "question": "What is the purpose of the 'use strict' directive in JavaScript?",
+        "options": ["It enables strict mode, which catches common coding mistakes and 'unsafe' actions", "It allows the use of experimental JavaScript features", "It enforces stricter syntax rules for JavaScript code", "It restricts the use of certain built-in JavaScript functions"],
+        "answer": "It enables strict mode, which catches common coding mistakes and 'unsafe' actions"
+    },
+    {
+        "question": "What is the CSS 'box-sizing' property used for?",
+        "options": ["It defines the size of the content area of an element", "It includes padding and border in the element's total width and height", "It specifies whether an element should be displayed as a block or inline element", "It controls the alignment of the content inside a box"],
+        "answer": "It includes padding and border in the element's total width and height"
+    },
+    {
+        "question": "What is a closure in JavaScript?",
+        "options": ["A function declared inside another function", "A way to create private variables in JavaScript", "The combination of a function and the lexical environment within which that function was declared", "A way to organize and encapsulate code in JavaScript applications"],
+        "answer": "The combination of a function and the lexical environment within which that function was declared"
+    }
+    
+]
+
