@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe vs Computer</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins';
+            justify-content: space-around;
+            align-items: center;
+            background-color: lightseagreen;
+        }
+        button{
+            width: 200px;
+            padding: 20px 40px;
+            background-color: rgb(76, 168, 230);
+            color: whitesmoke;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            border: none;
+            box-shadow: 2px 2px 8px rgb(51, 51, 51);
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover{
+            background-color: hsl(204, 75%, 40%);
+        }
+        button:active{
+            background-color: hsl(204, 75%, 30%);
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            width: fit-content;
+            padding: 10px;
+            background-color: hsl(204, 75%, 70%);
+            position: relative;
+            border: 15px solid hsl(204, 75%, 30%);
+            border-radius: 8px;
+
+            
+        }
+        .cell {
+            background-color:transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1;
+            font-size: 3rem;
+            font-weight: 600;
+        }
+  
+        .green{
+            background-color:transparent;
+            color: rgb(12, 116, 38);
+            animation: zoom 1s ;
+            border: none;
+
+        }
+        .orange{
+            background-color:transparent;
+            color: orange;
+            border: none;
+            animation: zoom 1s ;
+
+        }
+        @keyframes zoom{
+            0%{transform: scale(0.5);}
+            50%{transform: scale(1.3);}
+            100%{transform: scale(1);}
+        }
+        .hidden{
+            display: none;
+        }
+        .show{
+            background-color: black;
+        }
+
+        .line{
+            width: 320px;
+            height: 8px;
+            border-radius: 10px;
+            background-color: rgba(5, 53, 75, 0.8);
+            position: absolute;
+            z-index: 3;
+        }
+        .line1{
+            top:100px;
+            animation: line 1s ease;
+        }
+        .line2{
+            bottom:100px;
+            animation: line 1s ease;
+
+        }
+        .line3{
+            rotate: 90deg;
+            top:156px;
+            left: -50px;
+            animation: line 1s ease;
+
+        }
+        .line4{
+            rotate: 90deg;
+            top:156px;
+            right: -50px;
+            animation: line 1s ease;
+
+        }
+        @keyframes line{
+            0%{width: 0;}
+            100%{width: 320px;}
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="board" id="board">
+        <div class="cell" onclick="makeMove(0)"></div>
+        <div class="cell" onclick="makeMove(1)"></div>
+        <div class="cell" onclick="makeMove(2)"></div>
+        <div class="cell" onclick="makeMove(3)"></div>
+        <div class="cell" onclick="makeMove(4)"></div>
+        <div class="cell" onclick="makeMove(5)"></div>
+        <div class="cell" onclick="makeMove(6)"></div>
+        <div class="cell" onclick="makeMove(7)"></div>
+        <div class="cell" onclick="makeMove(8)"></div>
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+        <div class="line line4"></div>
+    </div>
+    <h2 class="winner">Make your move</h2>
+    <button class="playerFirst" onclick="resetBoard()">Player first</button>
+    <button class="computerFirst" onclick="playComputerFirst()">Computer first</button>
+
+    <script>
+        let currentPlayer = 'X';
+        const cells = document.querySelectorAll('.cell');
+        const winner = document.querySelector('.winner');
+        const playButton = document.querySelector('.playAgain');
+        const lines = document.querySelectorAll('.line');
+
+        linesDraw();
+        function makeMove(index) {
+            if (cells[index].textContent === '') {
+                cells[index].textContent = currentPlayer;
+                if(currentPlayer === 'X'){
+                    cells[index].classList.add('green');
+                }
+                else{
+                    cells[index].classList.add('orange');
+
+                }
+                setTimeout(function(){
+                    if (checkWinner()) {
+                        if(currentPlayer==='X'){
+                            winner.textContent='Player wins!';
+                        }else{
+                            winner.textContent='Computer wins';
+                        }
+                    
+
+                        
+                } else if (checkDraw()) {
+                    winner.textContent='Its a draw!';
+                    
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    if (currentPlayer === 'O') {
+                        setTimeout(function(){
+                            makeAIMove();
+                        }, 100);
+                    
+                }
+                }
+                }, 1);
+                
+            }
+        }
+
+        function makeAIMove() {
+            // Check if the computer can win in the next move
+            let winningMove = checkNextMove('O');
+            if (winningMove !== -1) {
+                makeMove(winningMove);
+                return;
+            }
+
+            // Check if the player can win in the next move, and block if necessary
+            let blockingMove = checkNextMove('X');
+            if (blockingMove !== -1) {
+                makeMove(blockingMove);
+                return;
+            }
+
+            // If no winning or blocking move, make a random move
+            let emptyCells = [];
+            for (let i = 0; i < cells.length; i++) {
+                if (cells[i].textContent === '') {
+                    emptyCells.push(i);
+                }
+            }
+            if (emptyCells.length > 0) {
+                let randomIndex = Math.floor(Math.random() * emptyCells.length);
+                let move = emptyCells[randomIndex];
+                setTimeout(() => {
+                    makeMove(move);
+                }, 500);
+            }
+        }
+
+function checkNextMove(player) {
+    const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    for (let combo of winningCombos) {
+        let emptyIndex = -1;
+        let count = 0;
+        for (let index of combo) {
+            if (cells[index].textContent === '') {
+                emptyIndex = index;
+            } else if (cells[index].textContent === player) {
+                count++;
+            } else {
+                emptyIndex = -1;
+                break;
+            }
+        }
+        if (count === 2 && emptyIndex !== -1) {
+            return emptyIndex;
+        }
+    }
+    return -1;
+}
+        function linesDraw(){
+            setTimeout(function() {
+                lines[0].classList.add('show');
+            }, 500);
+            setTimeout(function() {
+                lines[1].classList.add('show');
+            }, 1500);
+            setTimeout(function() {
+                lines[2].classList.add('show');
+            }, 2500);
+            setTimeout(function() {
+                lines[3].classList.add('show');
+            }, 3500);
+        }
+        
+        function checkWinner() {
+            const winningCombos = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            return winningCombos.some(combo => {
+                return combo.every(index => {
+                    return cells[index].textContent === currentPlayer;
+                });
+            });
+        }
+
+        function checkDraw() {
+            return [...cells].every(cell => {
+                return cell.textContent !== '';
+            });
+        }
+
+        function resetBoard() {
+            currentPlayer='X';
+
+            
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('green');
+                cell.classList.remove('orange');
+                winner.textContent='Make your move';
+
+            });
+          
+        }
+
+        function playComputerFirst(){
+            resetBoard();
+            currentPlayer='O';
+            makeAIMove();
+        }
+    </script>
+</body>
+</html>
