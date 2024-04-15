@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 95%);
+    box-sizing: border-box;
+}
+
+button{
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: hsl(200, 60%, 40%);
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight:200;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.minBtn{
+    padding-bottom: 8px;
+}
+.multBtn{
+    padding-top: 12px;
+}
+#calculator{
+    font-family: 'Poppins',Arial, Helvetica, sans-serif;
+    background-color: hsl(200, 59%, 30%);
+    max-width: 320px;
+    border-radius: 16px;
+    /* overflow: hidden; */
+}
+
+#keys{
+    display: grid;
+    grid-template-columns: repeat(4,50px);
+    gap: 20px;
+    padding: 30px;
+}
+#display{
+    margin: 30px 30px 0px;
+    width: 200px;
+    height: 60px;
+    padding: 20px;
+    padding-right: 40px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    background-color: hsla(49, 84%, 88%, 0.836);
+    border: none;
+    color: rgb(37, 37, 37);
+    border-radius: 16px;
+
+}
+button:hover{
+    background-color: hsl(200, 59%, 50%);
+
+}
+button:active{
+    background-color: hsl(200, 59%, 60%);
+
+}
+
+.biggerBtnCol
+{
+grid-row: span 2; /* Make plus, equals, and zero buttons span two columns */
+padding: 20px; /* Adjust padding for larger buttons */
+height: 120px;
+border-radius: 8px;
+}
+
+.biggerBtnRow {
+    grid-column:span 2;
+    width: 120px;
+
+}
+
+.operator-btn{
+    background-color: hsl(40, 100%, 45%);
+}
+.operator-btn:hover{
+    background-color: hsl(39, 100%, 60%);
+}
+.operator-btn:active{
+    background-color: hsl(39, 100%, 70%);
+}
+
+.operator-C{
+    background-color: hsl(0, 0%, 55%);
+}
+.operator-C:hover{
+    background-color: hsl(0, 0%, 65%);
+}
+.operator-C:active{
+    background-color: hsl(0, 0%, 75%);
+}

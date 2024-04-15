@@ -1,0 +1,69 @@
+body{
+    background-color: rgb(33, 70, 139);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: white;
+}
+button{
+    width: 250px;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background-color: hsla(16, 100%, 53%, 0.842);
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+button:hover{
+    background-color: hsl(16, 100%, 40%);
+}
+button:active{
+    background-color: hsl(16, 100%, 30%);
+}
+.memory-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 10px;
+}
+
+.card {
+    width: 100px;
+    height: 150px;
+    background-image: linear-gradient(#c73a3a,hsla(0, 22%, 48%, 0.5));
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+.card.flip {
+    transform: rotateY(180deg);
+    background-image: linear-gradient(#000000,#0000007e);
+}
+
+.matched {
+    background-image: linear-gradient(#0f4e1e,hsla(101, 93%, 32%, 0.5));
+    visibility: visible;
+    transform: rotateY(180deg);
+}
+
+.hidden {
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+}
