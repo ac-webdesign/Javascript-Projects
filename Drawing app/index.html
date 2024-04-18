@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Drawing App</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        canvas {
+            border: 2px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="drawingCanvas"></canvas>
+
+    <script>
+        // Get the canvas element and its context
+const canvas = document.getElementById('drawingCanvas');
+const context = canvas.getContext('2d');
+
+// Set initial drawing properties
+let isDrawing = false;
+context.lineWidth = 5;
+context.lineCap = 'round';
+context.strokeStyle = '#000';
+
+// Function to start drawing
+function startDrawing(event) {
+    isDrawing = true;
+    draw(event);
+}
+
+// Function to stop drawing
+function stopDrawing() {
+    isDrawing = false;
+    context.beginPath();
+}
+
+// Function to draw on the canvas
+function draw(event) {
+    if (!isDrawing) return;
+
+    const x = event.clientX - canvas.offsetLeft;
+    const y = event.clientY - canvas.offsetTop;
+
+    context.lineTo(x, y);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(x, y);
+}
+
+// Event listeners to start and stop drawing
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mousemove', draw);
+
+    </script>
+</body>
+</html>

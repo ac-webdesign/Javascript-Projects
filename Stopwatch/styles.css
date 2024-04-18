@@ -1,0 +1,72 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hwb(104 96% 0%);
+}
+
+#myH1 {
+    font-size: 4rem;
+    font-family: 'Poppins',Arial, Helvetica, sans-serif;
+    color: rgb(41, 103, 153);
+
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 16px;
+    background-color: white;
+    box-shadow:2px 2px 2px rgb(117, 117, 117);
+
+}
+#display {
+    font-size: 4rem;
+    color: rgb(75, 75, 75);
+font-weight: bold;
+    font-family: monospace;
+text-shadow: 2px 2px 2px rgb(0, 0, 0);
+margin-bottom: 20px;
+
+}
+
+#controls button{
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 10px 10px;
+    box-shadow:2px 2px 2px rgb(117, 117, 117);
+    border: none;
+    color: white;
+}
+
+#startBtn{
+    background-color: hsl(120, 100%, 40%);
+}
+#startBtn:hover{
+    background-color: hsl(120, 100%, 30%);
+}
+#startBtn:active{
+        background-color: hsl(120, 100%, 20%);
+}
+
+#stopBtn{
+    background-color: hsl(20, 100%, 50%);
+}
+#stopBtn:hover{
+    background-color: hsl(20, 100%, 40%);}
+#stopBtn:active{
+    background-color: hsl(20, 100%, 30%);}
+    
+#resetBtn{
+        background-color: hsl(200, 100%, 50%);
+}
+#resetBtn:hover{
+        background-color: hsl(200, 100%, 40%);}
+
+#resetBtn:active{
+        background-color: hsl(200, 100%, 30%);
+    }

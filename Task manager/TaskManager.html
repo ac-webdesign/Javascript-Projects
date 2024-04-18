@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed {
+    text-decoration: line-through;
+    text-decoration-skip-ink: auto;
+
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    text-decoration: none;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.complete-btn {
+    background-color: #28a745;
+}
+
+.complete-btn:hover {
+    background-color: #218838;
+}
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Add new task">
+            <button class="task-btn" type="submit">Add Task</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+    <script src="script.js">
+        const taskForm = document.getElementById('task-form');
+const taskInput = document.getElementById('task-input');
+const taskList = document.getElementById('task-list');
+
+
+// Load tasks from local storage when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(function(task) {
+        addTaskToDOM(task);
+    });
+});
+
+taskForm.addEventListener('submit',addTask);
+
+function addTask(event){
+    event.preventDefault(); // prevent form submission
+
+    const taskText = taskInput.value.trim();
+
+    if(taskText!==""){
+        const task = { text: taskText, completed: false };
+        addTaskToDOM(task);
+        saveTaskToLocalStorage(task);
+        taskInput.value = '';
+
+    }
+    else{
+        alert('Please enter a task');
+    }
+}
+
+function addTaskToDOM(task) {
+    const taskItem = document.createElement('li');
+    taskItem.innerHTML = `
+        <span class="task-text ${task.completed ? 'completed' : ''}">${task.text}</span>
+        <button class="complete-btn" ${task.completed ? 'style="display: none;"' : ''}>Complete</button>
+        <button class="delete-btn">Delete</button>
+    `;
+    taskList.appendChild(taskItem);
+}
+
+function saveTaskToLocalStorage(task) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+taskList.addEventListener('click', function(event) {
+    const taskItem=event.target.parentElement;
+    const taskText=taskItem.querySelector('span.task-text');
+
+    if (event.target.classList.contains('delete-btn')) {
+        // Remove the parent <li> element when delete button is clicked
+       taskItem.remove();
+       removeTaskFromLocalStorage(taskText.textContent);
+
+    }
+    if(event.target.classList.contains('complete-btn')){
+        taskText.classList.toggle('completed');
+        event.target.style.display='none';
+        updateTaskCompletionInLocalStorage(taskText.textContent, true);
+
+    }
+});
+
+    </script>
+</body>
+</html>
