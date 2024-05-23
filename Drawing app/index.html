@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
+        *{
+            font-family: 'Poppins';
+        }
         body {
             margin: 0;
             padding: 0;
@@ -14,58 +17,88 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #daf1e5;
+            flex-direction: column;
         }
 
         canvas {
-            border: 2px solid #000;
+            border-radius: 8px;
+            background-color: green;
+            box-shadow: inset 0 0 2px rgb(0, 255, 191);
+            width: 600px;
+            height: 400px;
+            cursor: crosshair;
         }
-
+        h1{
+            color: green;
+        }
+        button{
+            margin-top: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 px green;
+            background-color: green;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <canvas id="drawingCanvas"></canvas>
+    <h1>Drawing App</h1>
+    <canvas id="drawingCanvas" width="600" height="400"></canvas>
+    <div class="tools">
+        <div class="pen-color"></div>
+        <div class="pen-size"></div>
+        <div class="board-size"></div>
+    </div>
+    <button id="resetButton" onclick="resetCanvas()">Start over</button>
 
     <script>
         // Get the canvas element and its context
-const canvas = document.getElementById('drawingCanvas');
-const context = canvas.getContext('2d');
+        const canvas = document.getElementById('drawingCanvas');
+        const context = canvas.getContext('2d');
 
-// Set initial drawing properties
-let isDrawing = false;
-context.lineWidth = 5;
-context.lineCap = 'round';
-context.strokeStyle = '#000';
+        // Set initial drawing properties
+        let isDrawing = false;
+        context.lineWidth = 7;
+        context.lineCap = 'round';
+        context.strokeStyle = '#fff';
 
-// Function to start drawing
-function startDrawing(event) {
-    isDrawing = true;
-    draw(event);
-}
+        // Function to start drawing
+        function startDrawing(event) {
+            isDrawing = true;
+            draw(event);
+        }
 
-// Function to stop drawing
-function stopDrawing() {
-    isDrawing = false;
-    context.beginPath();
-}
+        // Function to stop drawing
+        function stopDrawing() {
+            isDrawing = false;
+            context.beginPath();
+        }
 
-// Function to draw on the canvas
-function draw(event) {
-    if (!isDrawing) return;
+        // Function to draw on the canvas
+        function draw(event) {
+            if (!isDrawing) return;
 
-    const x = event.clientX - canvas.offsetLeft;
-    const y = event.clientY - canvas.offsetTop;
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
 
-    context.lineTo(x, y);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(x, y);
-}
+            context.lineTo(x, y);
+            context.stroke();
+            context.beginPath();
+            context.moveTo(x, y);
+        }
 
-// Event listeners to start and stop drawing
-canvas.addEventListener('mousedown', startDrawing);
-canvas.addEventListener('mouseup', stopDrawing);
-canvas.addEventListener('mousemove', draw);
+        function resetCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        // Event listeners to start and stop drawing
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mousemove', draw);
 
     </script>
 </body>
